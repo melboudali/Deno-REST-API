@@ -1,4 +1,4 @@
-import { bold, yellow } from "https://deno.land/std/fmt/colors.ts";
+import { bold, yellow, red, green } from "https://deno.land/std/fmt/colors.ts";
 import { Application, send } from "https://deno.land/x/oak/mod.ts";
 
 const app = new Application();
@@ -10,6 +10,6 @@ app.use(async context => {
   });
 });
 
-const port = '8000';
-console.log(bold('Start listening on port: ') + yellow(port));
-await app.listen(port);
+const server = { hostname: "127.0.0.1", port: 8000 };
+console.log(`${yellow('Start listening on')} => ${green(server.hostname)}:${red(server.port.toString())}`);
+await app.listen(server);
