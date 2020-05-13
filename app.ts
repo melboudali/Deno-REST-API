@@ -1,5 +1,15 @@
-import { serve } from "https://deno.land/std@0.50.0/http/server.ts";
-const s = serve({ port: 8000 });
-for await (const req of s) {
-  req.respond({ body: "This is my first Deno app ;)" });
-}
+import { bold, yellow } from "https://deno.land/std/fmt/colors.ts";
+import { Application, send } from "https://deno.land/x/oak/mod.ts";
+
+const app = new Application();
+
+app.use(async context => {
+  await send(context, context.request.url.pathname, {
+    root: `${Deno.cwd()}/static`,
+    index: "index.html"
+  });
+});
+
+const port = '8000';
+console.log(bold('Start listening on port: ') + yellow(port));
+await app.listen(port);
