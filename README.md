@@ -1,2 +1,2 @@
-# Deno App
- My First Deno App
+# :sparkles: Deno REST API
+:tada: full REST API using Deno
